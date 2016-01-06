@@ -1,3 +1,45 @@
+Desired topology:
+
+    http://tessera
+         |
+         v
+  +=============+
+  | tessera (2) |=+
+  +=============+ |
+    +=============+
+         |
+   http://graphite             carbon-metrics:2003
+         |                            |
+	 v                            v
+  +==================+          +============+
+  | graphite-web (2) |-+   .--->| carbon (4) |-+
+  +==================+ |--'     +============+ |
+    +==================+          +============+
+         |        `-------.            |
+	 v                v            v
+   +==========+       +===========================+
+   | database |       | whisper data (shared EBS) |
+   +==========+       +===========================+
+
+                  (also need memcached)
+
+Design notes:
+- Each container group is auto-scaled
+- Assume each container is run on a separate machine in a separate AZ
+  (in actuality they may not be, but it's the safest assumption)
+    - Probably need a separate database because of this
+- The whole thing is orchestrated with Docker Compose
+- Data is properly separated onto volumes (use docker diff and watch
+  to make sure docker containers are largely treating their local FS
+  as read-only)
+- carbon cluster is, fundamentally, a batching mechanism -- it caches
+  incoming metrics in RAM so that it can write to whisper periodically
+  so it doesn't need to hit disk on every single request
+- May need a carbon relay in front of the carbon cluster
+    - By the way, carbon-relay is probably a better way to sync
+      data centers than rsync
+- Do we need carbon-aggregator.py?
+
 graphite-web:
 - Resolve "No handlers could be found for logger "cache"" error
 - Can we hook up graphite-web to carbon docker container so I don't have to
