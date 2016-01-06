@@ -1,0 +1,15 @@
+graphite-web:
+- Resolve "No handlers could be found for logger "cache"" error
+- Can we hook up graphite-web to carbon docker container so I don't have to
+  mount the whisper volumes on the graphite-web servers?
+- Remove DEBUG=True from graphite-web config
+- Set up memcached
+- Do we need to make the sqlitedb owned by nobody:nobody?
+
+statsd:
+- Set it up as its own docker container
+
+tessera:
+- Set it up as its own docker container
+
+wrap it all in docker compose
