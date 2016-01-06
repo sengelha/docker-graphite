@@ -9,21 +9,21 @@ RUN apt-get -y install python-flup
 RUN apt-get -y install nginx
 RUN apt-get -y install expect
 RUN apt-get -y install python-cairo
-RUN pip install django==1.3
+RUN pip install django==1.4
 RUN pip install django-tagging==0.3.1
 
 # install whisper
 RUN mkdir /tmp/whisper
-RUN wget https://launchpad.net/graphite/0.9/0.9.10/+download/whisper-0.9.10.tar.gz -O /tmp/whisper/whisper-0.9.10.tar.gz
-RUN tar zxvf /tmp/whisper/whisper-0.9.10.tar.gz -C /tmp/whisper
-WORKDIR /tmp/whisper/whisper-0.9.10
+RUN wget https://github.com/graphite-project/whisper/archive/0.9.15.tar.gz -O /tmp/whisper/whisper-0.9.15.tar.gz
+RUN tar zxvf /tmp/whisper/whisper-0.9.15.tar.gz -C /tmp/whisper
+WORKDIR /tmp/whisper/whisper-0.9.15
 RUN python ./setup.py install
 
 # install graphite
 RUN mkdir /tmp/graphite-web
-RUN wget https://launchpad.net/graphite/0.9/0.9.10/+download/graphite-web-0.9.10.tar.gz -O /tmp/graphite-web/graphite-web-0.9.10.tar.gz
-RUN tar zxvf /tmp/graphite-web/graphite-web-0.9.10.tar.gz -C /tmp/graphite-web
-WORKDIR /tmp/graphite-web/graphite-web-0.9.10
+RUN wget https://github.com/graphite-project/graphite-web/archive/0.9.15.tar.gz -O /tmp/graphite-web/graphite-web-0.9.15.tar.gz
+RUN tar zxvf /tmp/graphite-web/graphite-web-0.9.15.tar.gz -C /tmp/graphite-web
+WORKDIR /tmp/graphite-web/graphite-web-0.9.15
 RUN python ./setup.py install
 
 # configure graphite

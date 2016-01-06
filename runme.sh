@@ -1,7 +1,7 @@
 #!/bin/sh
 
-GRAPHITE_CONTAINER_ID=d096ef10077e
-CARBON_CONTAINER_ID=60944c5fa6a4
+GRAPHITE_CONTAINER_ID=551ae4a4853f
+CARBON_CONTAINER_ID=66cc8968f4e8
 
 # Start graphite-web
 mkdir -p $PWD/volumes/graphite/var/log

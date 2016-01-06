@@ -10,16 +10,16 @@ RUN pip install twisted==11.1.0
 
 # install whisper
 RUN mkdir /tmp/whisper
-RUN wget https://launchpad.net/graphite/0.9/0.9.10/+download/whisper-0.9.10.tar.gz -O /tmp/whisper/whisper-0.9.10.tar.gz
-RUN tar zxvf /tmp/whisper/whisper-0.9.10.tar.gz -C /tmp/whisper
-WORKDIR /tmp/whisper/whisper-0.9.10
+RUN wget https://github.com/graphite-project/whisper/archive/0.9.15.tar.gz -O /tmp/whisper/whisper-0.9.15.tar.gz
+RUN tar zxvf /tmp/whisper/whisper-0.9.15.tar.gz -C /tmp/whisper
+WORKDIR /tmp/whisper/whisper-0.9.15
 RUN python ./setup.py install
 
 # install carbon
 RUN mkdir /tmp/carbon
-RUN wget https://launchpad.net/graphite/0.9/0.9.10/+download/carbon-0.9.10.tar.gz -O /tmp/carbon/carbon-0.9.10.tar.gz
-RUN tar zxvf /tmp/carbon/carbon-0.9.10.tar.gz -C /tmp/carbon 
-WORKDIR /tmp/carbon/carbon-0.9.10
+RUN wget https://github.com/graphite-project/carbon/archive/0.9.15.tar.gz -O /tmp/carbon/carbon-0.9.15.tar.gz
+RUN tar zxvf /tmp/carbon/carbon-0.9.15.tar.gz -C /tmp/carbon 
+WORKDIR /tmp/carbon/carbon-0.9.15
 RUN python ./setup.py install
 
 # configure carbon

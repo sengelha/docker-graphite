@@ -40,8 +40,11 @@ Design notes:
       data centers than rsync
 - Do we need carbon-aggregator.py?
 
+carbon:
+- No known issues
+
 graphite-web:
-- Resolve "No handlers could be found for logger "cache"" error
+- Fix SECRET_KEY is unsafe error
 - Can we hook up graphite-web to carbon docker container so I don't have to
   mount the whisper volumes on the graphite-web servers?
 - Remove DEBUG=True from graphite-web config
